@@ -1,0 +1,18 @@
+# coding:utf-8
+# 需要监控的端口以及对于的服务名
+server:
+  8080: xxx #监控端口及服务名
+command:
+  #获取本机IP命令 中文将【addr】改为【地址】
+  get_ip: "/sbin/ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d '地址:'"
+  #获取监控目标的进程信息 %s,%s分别代表ip和目标端口(8091|8092|8093形式)
+  get_process: "netstat -lpn|grep java|grep '%s'|egrep '%s'|awk '{print $4}'"
+  #发送短信的命令 此处使用短信服务商的http接口，请自行配置按curl规范配置
+  send_sms: "curl -X POST -F ...请求参数 短信服务商url"
+  #与后台服务心跳命令
+  ping: "curl -I -m 10 -o /dev/null -s -w %{http_code} "
+developers:
+  phones: 接收短信的手机号码，以逗号分隔
+  emails: 接收邮件的邮箱地址，以逗号分隔
+ping:
+  req_path: #心跳地址 暂时未使用
