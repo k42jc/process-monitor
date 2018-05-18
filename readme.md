@@ -1,6 +1,10 @@
+python实现的服务器JAVA进程监控脚本，提供进程检查、心跳检测(需要后台接口支持)、进程下线/假死报警
+
+## 使用
+
 需要config.py,send_email.py,monitor.py
 
-跑monitor.py
+**跑monitor.py**
 
 ## 总体思路
 
